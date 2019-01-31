@@ -1979,7 +1979,7 @@
 	 */
 	Lazy.Defaults = {
 		lazyLoad: false,
-		lazyLoadEager: 0
+		lazyLoadEager: 1
 	};
 
 	/**
