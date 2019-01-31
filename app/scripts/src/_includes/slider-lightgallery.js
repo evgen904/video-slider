@@ -1974,12 +1974,11 @@
                 thumbImg = thumb;
             }
 
-            
-
             thumbList += '<div data-vimeo-id="' + vimeoId + '" class="lg-thumb-item" style="width:' + _this.core.s.thumbWidth + 'px; height: ' + _this.core.s.thumbHeight + '; margin-right: ' + _this.core.s.thumbMargin + 'px"><img src="' + thumbImg + '" /></div>';
             vimeoId = '';
         }
 
+        // Thumb-video
         var indexVideo = null;
 
         if (_this.core.s.dynamic) {
@@ -1989,7 +1988,8 @@
         } else {
             _this.core.$items.each(function(i) {
                 if (!_this.core.s.exThumbImage) {
-                    
+
+                    // Thumb-video
                     if ($(this).find('img').attr('src') !== undefined) {
                         getThumb($(this).attr('href') || $(this).attr('data-src'), $(this).find('img').attr('src'), i);
                         if ($(this).find('img').data('thumb-video')) {
@@ -2008,6 +2008,7 @@
 
         _this.core.$outer.find('.lg-thumb').html(thumbList);
 
+        // Thumb-video
         if (indexVideo !== null) {
             $('.lg-thumb > div').eq(indexVideo).addClass('video');
         }
@@ -2366,12 +2367,11 @@
             _this.core.$el.on('onAfterSlide.lg.tm', function(event, prevIndex) {
                 _this.core.$slide.eq(prevIndex).removeClass('lg-video-playing');
 
-                var videoStream = document.querySelector('.lg-item .player-wrapper');
+                // stream-video-pause
+                var videoStream = document.querySelector('.lg-item .player-lightgallery-wrapper');
                 if (videoStream) {
                     videoStream.children[0].pause();
-
                     videoStream.classList.add('active');
-
                 }
 
             });
@@ -2479,7 +2479,7 @@
                                     console.error('Make sure you have included videojs');
                                 }
                             } else {
-
+                                // stream-video-start
                                 if (_this.core.$slide.eq(_this.core.index).find('stream').length) {
                                     _this.core.$slide.eq(_this.core.index).find('stream > div:first').remove();
                                 }
@@ -2488,7 +2488,7 @@
 
                                     if (_this.core.$slide.eq(_this.core.index).find('stream').length) {
 
-                                        var videoStream = document.querySelector('.lg-current .player-wrapper');
+                                        var videoStream = document.querySelector('.lg-current .player-lightgallery-wrapper');
                                         if (videoStream) {
                                             setTimeout(function(){
                                                 videoStream.children[0].play();
@@ -2501,7 +2501,7 @@
                                     }
 
                                 },300);
-                                
+                                // stream-video-end
                             }
                         }
 
