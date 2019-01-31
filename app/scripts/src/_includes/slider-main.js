@@ -17,7 +17,7 @@ $(function(){
             toogleThumb: false,
             autoplayControls: false
         });
-    }   
+    }
 
     var $thumbGalleryDetail = $('#thumbGalleryDetai'),
         $thumbGalleryThumbs = $('#thumbGalleryThumbs'),
@@ -57,6 +57,12 @@ $(function(){
                 }
             }
         });
+
+    function imgRectangle(width, height, item) {
+        if (height>width) {
+            item.addClass('rectangle');
+        }
+    }
 
     $thumbGalleryThumbs
         .on('initialized.owl.carousel', function() {
@@ -98,7 +104,7 @@ $(function(){
             if (lastSlideClick>1) {
                 $thumbGalleryDetail.trigger('to.owl.carousel', [0, duration, true]);
                 lastSlideClick=0;
-            }   
+            }
             else {
                 $thumbGalleryDetail.trigger('to.owl.carousel', [$(this).index(), duration, true]);
             }
@@ -106,6 +112,7 @@ $(function(){
             if (videoStream) {
                 videoStream.children[0].pause();
             }
+            imgRectangle($(this).find('img').get(0).naturalWidth, $(this).find('img').get(0).naturalHeight, $('#thumbGalleryDetai .owl-stage > div').eq($(this).index()));
         })
         .on('changed.owl.carousel', function(e) {
             if (!flag) {
@@ -121,6 +128,11 @@ $(function(){
             }
         });
 
+    setTimeout(function () {
+        imgRectangle($('#thumbGalleryDetai .active img').get(0).naturalWidth, $('#thumbGalleryDetai .active img').get(0).naturalHeight, $('#thumbGalleryDetai .active'));
+    },300)
+
+
     var videoStreamSlider = document.querySelector('.player-owl-wrapper .player-wrap');
     if (videoStreamSlider) {
         $('.fullscreen-video').on('click',function(){
@@ -128,7 +140,7 @@ $(function(){
             $('#thumbGalleryDetai').addClass('active');
             videoStreamSlider.children[0].play();
             videoStreamSlider.children[0].querySelector('.vjs-fullscreen-control').click();
-        });  
+        });
         function pauseVideo() {
             videoStreamSlider.children[0].pause();
             $('.fullscreen-video').removeClass('hidden');

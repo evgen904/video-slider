@@ -349,7 +349,13 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
     height: 0;
     padding-bottom: 56.25%;
     overflow: hidden;
-    position: relative
+    position: relative;
+    stream {
+        padding-bottom: 100px;
+        &.active {
+            z-index: 10000;
+        }
+    }
 }
 .lg-outer .lg-video .lg-object {
     display: inline-block;
@@ -1191,6 +1197,13 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 
 
 /* main */
+
+body {
+    background-color: #fff;
+}
+
+
+
 .owl-carousel-wrap {
     width: 100%;
     max-width: 820px;
@@ -1253,12 +1266,16 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
                 height: 240px;
             }
         }
+        .rectangle img {
+            object-fit: none;
+        }
         .item {
             padding: 0;
             margin: 0;
             text-align: center;
             position: relative;
             height: 553px;
+            background-color: #ecebea !important;
             @media all and (max-width: 1280px) {
                 height: 351px;
             }
