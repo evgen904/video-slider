@@ -2005,6 +2005,11 @@
 				$element.one('load.owl.lazy', $.proxy(function() {
 					$element.css('opacity', 1);
 					this._core.trigger('loaded', { element: $element, url: url }, 'lazy');
+                    if (!$element.parents('.owl-item').hasClass('rectangle')) {
+                        if ($element.get(0).naturalHeight>$element.get(0).naturalWidth) {
+                            $element.parents('.owl-item').addClass('rectangle');
+                        }
+                    }
 				}, this)).attr('src', url);
             } else if ($element.is('source')) {
                 $element.one('load.owl.lazy', $.proxy(function() {
@@ -7740,12 +7745,6 @@ $(function(){
             }
         });
 
-    function imgRectangle(width, height, item) {
-        if (height>width) {
-            item.addClass('rectangle');
-        }
-    }
-
     $thumbGalleryThumbs
         .on('initialized.owl.carousel', function() {
             $thumbGalleryThumbs.find(".owl-item").eq(startPositionSlider).addClass("current");
@@ -7774,7 +7773,7 @@ $(function(){
                 1280: {
                     items: 6
                 }
-            },
+            }
         })
         .on('click', '.owl-item', function() {
             if ($('#thumbGalleryThumbs .owl-item').length-1 == $(this).index()) {
@@ -7794,7 +7793,6 @@ $(function(){
             if (videoStream) {
                 videoStream.children[0].pause();
             }
-            imgRectangle($(this).find('img').get(0).naturalWidth, $(this).find('img').get(0).naturalHeight, $('#thumbGalleryDetai .owl-stage > div').eq($(this).index()));
         })
         .on('changed.owl.carousel', function(e) {
             if (!flag) {
@@ -7809,11 +7807,6 @@ $(function(){
                     .addClass("current");
             }
         });
-
-    setTimeout(function () {
-        imgRectangle($('#thumbGalleryDetai .active img').get(0).naturalWidth, $('#thumbGalleryDetai .active img').get(0).naturalHeight, $('#thumbGalleryDetai .active'));
-    },300)
-
 
     var videoStreamSlider = document.querySelector('.player-owl-wrapper .player-wrap');
     if (videoStreamSlider) {

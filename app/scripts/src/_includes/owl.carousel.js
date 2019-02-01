@@ -1976,6 +1976,11 @@
 				$element.one('load.owl.lazy', $.proxy(function() {
 					$element.css('opacity', 1);
 					this._core.trigger('loaded', { element: $element, url: url }, 'lazy');
+                    if (!$element.parents('.owl-item').hasClass('rectangle')) {
+                        if ($element.get(0).naturalHeight>$element.get(0).naturalWidth) {
+                            $element.parents('.owl-item').addClass('rectangle');
+                        }
+                    }
 				}, this)).attr('src', url);
             } else if ($element.is('source')) {
                 $element.one('load.owl.lazy', $.proxy(function() {
