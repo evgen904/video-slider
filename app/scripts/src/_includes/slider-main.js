@@ -441,7 +441,7 @@ $(function(){
             nav: true,
             dots: false,
             loop: false,
-            smartSpeed: 1000,
+            smartSpeed: 800,
             startPosition: startPositionSlider,
             //animateOut: 'fadeOut',
             navText: []
@@ -463,7 +463,6 @@ $(function(){
                 if (videoStream) {
                     videoStream.children[0].pause();
                 }
-
             }
         });
 
@@ -495,17 +494,23 @@ $(function(){
                 1280: {
                     items: 6
                 }
-            },
+            }
         })
         .on('click', '.owl-item', function() {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3ed962754ff63011b3f23a4413d7ea4f469491a3
             if ($('#thumbGalleryThumbs .owl-item').length-1 == $(this).index()) {
                 lastSlideClick++;
             }
             else {
                 lastSlideClick=0;
             }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3ed962754ff63011b3f23a4413d7ea4f469491a3
             if (lastSlideClick>1) {
                 $thumbGalleryDetail.trigger('to.owl.carousel', [0, duration, true]);
                 lastSlideClick=0;
@@ -513,12 +518,18 @@ $(function(){
             else {
                 $thumbGalleryDetail.trigger('to.owl.carousel', [$(this).index(), duration, true]);
             }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3ed962754ff63011b3f23a4413d7ea4f469491a3
             var videoStream = document.querySelector('.player-wrap');
             if (videoStream) {
                 videoStream.children[0].pause();
             }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3ed962754ff63011b3f23a4413d7ea4f469491a3
         })
         .on('changed.owl.carousel', function(e) {
             if (!flag) {
@@ -534,7 +545,7 @@ $(function(){
             }
         });
 
-    var videoStreamSlider = document.querySelector('.player-wrapper2 .player-wrap');
+    var videoStreamSlider = document.querySelector('.player-owl-wrapper .player-wrap');
     if (videoStreamSlider) {
         $('.fullscreen-video').on('click',function(){
             $(this).addClass('hidden');
